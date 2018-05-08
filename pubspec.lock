@@ -132,13 +132,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.1"
-  flutter_fetch_widget:
+  flutter_secure_storage:
     dependency: "direct main"
     description:
-      name: flutter_fetch_widget
+      name: flutter_secure_storage
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.1+1"
+    version: "3.0.0"
+  flutter_sodium:
+    dependency: "direct main"
+    description:
+      name: flutter_sodium
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.2"
   flutter_test:
     dependency: "direct dev"
     description: flutter

@@ -6,9 +6,9 @@ dependencies:
     sdk: flutter
   image_picker: "^0.4.1"
   json_annotation: ^0.2.3
-  flutter_fetch_widget: "^0.0.1+1"
   cached_network_image: "^0.4.1"
-
+  flutter_sodium: any
+  flutter_secure_storage: "^3.0.0"
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.0

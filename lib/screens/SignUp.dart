@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'ProfileForm.dart';
+import 'package:flutter_sodium/flutter_sodium.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class SignUp extends StatelessWidget {
   @override
