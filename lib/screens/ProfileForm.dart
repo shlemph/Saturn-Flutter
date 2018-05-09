@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:stellaris/Homepage.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 class ProfileForm extends StatelessWidget {
-
+  final storage = new FlutterSecureStorage();
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -51,6 +52,7 @@ class ProfileForm extends StatelessWidget {
               new IconButton(
                 icon: new Icon(Icons.check_circle),
                 onPressed: () {
+                  storage.write(key: 'name', value: 'Aidan');
                   Navigator.push(context,
                   new MaterialPageRoute(builder: (context) => HomePage()),
                   );

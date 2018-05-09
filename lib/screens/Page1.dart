@@ -16,7 +16,7 @@ class First extends StatelessWidget {
       renderError: ([error]) =>
           new Text('Sorry, there was an error loading your joke'),
       renderSuccess: ({data}) => new Text(data, style: new TextStyle(fontWeight: FontWeight.bold,
-       color: Colors.white,
+       color: Colors.deepPurple[600],
        fontSize: 24.0
        ),), 
     );
@@ -25,7 +25,7 @@ class First extends StatelessWidget {
       body: new Center(
         child: new Container(
             child: Padding(
-              padding: const EdgeInsets.all(12.0),
+              padding: const EdgeInsets.all(10.0),
               child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
@@ -39,16 +39,21 @@ class First extends StatelessWidget {
                     elevation: 10.0,
 
                     child: new Container(
-                      decoration: new BoxDecoration(
-                        gradient: new LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          colors: [const Color(0xFF6A1B9A), const Color(0xFFFF4081)]
+                      color: Colors.white,
+                      child: new Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: new Column(
+                          children: <Widget>[
+                            new Row(
+                              children: <Widget>[
+                                new Text("Balance", style: new TextStyle(
+                                color: Colors.deepPurple[600], fontSize: 18.0
+                                ),),
+                              ],
+                            ),
+                            _asyncLoader
+                          ],
                         ),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(50.0),
-                        child: _asyncLoader,
                       ),
                     ),
                   ),
@@ -59,6 +64,7 @@ class First extends StatelessWidget {
         ),
       ),
       floatingActionButton: new FloatingActionButton(
+        backgroundColor: Colors.deepPurple[600],
         onPressed: () => _asyncLoaderState.currentState.reloadState(),
         child: new Icon(Icons.refresh)
       ),
