@@ -1,62 +1,65 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import './screens/Page1.dart' as First;
 import './screens/Page2.dart' as Second;
 import './screens/Page3.dart' as Third;
 import './screens/Page4.dart' as Four;
 
-
-
-class HomePage extends StatefulWidget {
-  @override
-  HomePageState createState() => new HomePageState();
-}
-
-
-class HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
-
-  TabController controller;
-
-  @override
-  void initState() {
-    super.initState();
-    controller = new TabController(vsync: this, length: 4);
-  }
-
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
+class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      backgroundColor: Colors.white,
-      bottomNavigationBar: new Material(
-        color: Colors.white,
-        child: new TabBar(
-          controller: controller,
-          tabs: <Widget>[
-            new Tab(icon: new Icon(Icons.people_outline)),
-            new Tab(icon: new Icon(Icons.search)),
-            new Tab(icon: new Icon(Icons.history)),
-            new Tab(icon: new Icon(Icons.fingerprint))
-          ],
-          indicatorColor: Colors.purple,
-          labelColor: Colors.deepPurple,
-          unselectedLabelColor: Colors.black,
+    return new Material(
+      shadowColor: Colors.pink,
+      child: new Scaffold(
+        body: First.First(),
+        drawer: _drawer(),
+        bottomNavigationBar: new BottomAppBar(
+            hasNotch: true,
+            color: new Color(0xFF6200ea),
+            child: new Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+             children: <Widget>[
+               new IconButton(icon: Icon(Icons.menu),
+               color: Colors.white,
+               iconSize: 28.0,
+               alignment: Alignment.centerLeft,
+               onPressed: () => {},
+               ),
+                new IconButton(icon: Icon(Icons.fingerprint),
+               color: Colors.white,
+               onPressed: () => Navigator.of(context).pushNamed("/Page4"),
+               iconSize: 28.0,
+               ),
+             ],
+            ),
+            ),
+        floatingActionButton: new FloatingActionButton(
+          onPressed: () => {},
+          elevation: 5.0,
+          notchMargin: 7.0,
+          highlightElevation: 1.0,
+          backgroundColor: Colors.black,
+          child: Icon(Icons.panorama_fish_eye),
         ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       ),
-      body: new TabBarView(
-        controller: controller,
+    );
+  }
+}
+
+class _drawer extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new Drawer(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          new First.First(),
-          new Second.Second(),
-          new Third.Third(),
-          new Four.Four()
+          new CachedNetworkImage(
+             imageUrl: "https://avatars.io/instagram/a.i.d.x.n"
+          )
         ],
       ),
     );
   }
-
 }

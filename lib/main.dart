@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import './screens/SignUp.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import './Homepage.dart';
 //import 'package:image_picker/image_picker.dart';
+import './screens/Page1.dart';
+import './screens/Page2.dart';
+import './screens/Page3.dart';
+import './screens/Page4.dart';
 
 void main() => runApp(new MyApp());
 
@@ -13,7 +18,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-      home: new SignUp(),
+      debugShowCheckedModeBanner: false,
+      home: new HomePage(),
+      routes: <String, WidgetBuilder> {
+        "/Page1": (BuildContext context) => new First(),
+        "/Page2": (BuildContext context) => new Second(),
+        "/Page3": (BuildContext context) => new Third(),
+        "/Page4": (BuildContext context) => new Four(),
+      },
     );
   }
 }
