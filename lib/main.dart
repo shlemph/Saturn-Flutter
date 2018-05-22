@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import './screens/SignUp.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import './Homepage.dart';
+import 'package:scoped_model/scoped_model.dart';
 //import 'package:image_picker/image_picker.dart';
 import './screens/Page1.dart';
 import './screens/Page2.dart';
@@ -19,7 +20,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return new MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: new HomePage(),
+      home: ScopedModel<AppModel>(model: AppModel(),
+      
+      child: new HomePage()),
       routes: <String, WidgetBuilder> {
         "/Page1": (BuildContext context) => new First(),
         "/Page2": (BuildContext context) => new Second(),
@@ -29,3 +32,8 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+class AppModel extends Model {
+  
+}
+

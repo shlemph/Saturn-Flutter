@@ -4,6 +4,7 @@ import './screens/Page1.dart' as First;
 import './screens/Page2.dart' as Second;
 import './screens/Page3.dart' as Third;
 import './screens/Page4.dart' as Four;
+import './screens/Messages.dart' as Messages;
 
 class HomePage extends StatelessWidget {
 
@@ -12,7 +13,7 @@ class HomePage extends StatelessWidget {
     return new Material(
       shadowColor: Colors.pink,
       child: new Scaffold(
-        body: First.First(),
+        body: Messages.Messages(),
         drawer: _drawer(),
         bottomNavigationBar: new BottomAppBar(
             hasNotch: true,
@@ -24,7 +25,7 @@ class HomePage extends StatelessWidget {
                color: Colors.white,
                iconSize: 28.0,
                alignment: Alignment.centerLeft,
-               onPressed: () => {},
+               onPressed: () => _drawer(),
                ),
                 new IconButton(icon: Icon(Icons.fingerprint),
                color: Colors.white,
