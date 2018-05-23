@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return new MaterialApp(
       debugShowCheckedModeBanner: false,
+      showPerformanceOverlay: false,
       home: ScopedModel<AppModel>(model: AppModel(),
       
       child: new HomePage()),

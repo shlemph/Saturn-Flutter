@@ -56,7 +56,7 @@ class SecondPage extends StatelessWidget {
   final data;
   @override
   Widget build(BuildContext context) => new Scaffold(
-      appBar: new AppBar(title: new Text('Second Page')),
+      appBar: new AppBar(title: new Text(data["name"]["first"])),
       body: new Center(
         child: new Container(
           width: 150.0,

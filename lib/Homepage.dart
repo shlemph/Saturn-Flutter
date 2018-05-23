@@ -35,14 +35,7 @@ class HomePage extends StatelessWidget {
              ],
             ),
             ),
-        floatingActionButton: new FloatingActionButton(
-          onPressed: () => {},
-          elevation: 5.0,
-          notchMargin: 7.0,
-          highlightElevation: 1.0,
-          backgroundColor: Colors.black,
-          child: Icon(Icons.panorama_fish_eye),
-        ),
+        floatingActionButton: FAB(),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       ),
     );
@@ -62,5 +55,19 @@ class _drawer extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class FAB extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new FloatingActionButton(
+          onPressed: () => {},
+          elevation: 5.0,
+          notchMargin: 7.0,
+          highlightElevation: 1.0,
+          backgroundColor: Colors.black,
+          child: Icon(Icons.add),
+        );
   }
 }

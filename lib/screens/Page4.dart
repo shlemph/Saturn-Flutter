@@ -1,5 +1,10 @@
+import 'dart:async';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'dart:convert' as convert;
+import 'package:flutter_fetch_widget/flutter_fetch_widget.dart';
+
 
 class Four extends StatelessWidget {
   @override
@@ -46,6 +51,29 @@ class Four extends StatelessWidget {
                       ),
                     ),
                   ]),
+                  new FetchWidget<Post>(
+                    url: "https://jsonplaceholder.typicode.com/posts/1",
+                    transform: _toPost,
+                    builder: (fetchPost) {
+                      if (fetchPost.isWaiting) {
+                        return new Text("Loading...");
+                      }
+                      if (fetchPost.isDone && fetchPost.statusCode != 200) {
+                        return new Text(
+                          'Could not connect to API service. `${fetchPost.response.body}`'
+                        );
+                      }
+                      return new Column(
+                        children: <Widget>[
+                          new Text("Balance: ${fetchPost.data.id}" + "${fetchPost.data.title}"),
+                          new RaisedButton(
+                            onPressed: () => fetchPost.doFetch(),
+                            child: new Text("refresh"),
+                          )
+                        ],
+                      );
+                    },
+                  )
                 ],
               ),
             ),
@@ -54,4 +82,16 @@ class Four extends StatelessWidget {
       ),
     );
   }
+}
+
+Post _toPost(response) {
+  final Map<String, dynamic> json = convert.json.decode(response.body);
+  return new Post(json['id'], json['title']);
+}
+
+class Post {
+  final int id;
+  final String title;
+
+  Post(this.id, this.title);
 }
