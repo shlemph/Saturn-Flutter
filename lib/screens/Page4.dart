@@ -52,7 +52,7 @@ class Four extends StatelessWidget {
                     ),
                   ]),
                   new FetchWidget<Post>(
-                    url: "https://jsonplaceholder.typicode.com/posts/1",
+                    url: "https://horizon-testnet.stellar.org/accounts/GBHLPXLJ4YR5UBDM75YYCHY4PWZWITIGPFAH7ENEY5DPMU5W6YB7M52C",
                     transform: _toPost,
                     builder: (fetchPost) {
                       if (fetchPost.isWaiting) {
@@ -65,7 +65,15 @@ class Four extends StatelessWidget {
                       }
                       return new Column(
                         children: <Widget>[
-                          new Text("Balance: ${fetchPost.data.id}" + "${fetchPost.data.title}"),
+                          new Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: <Widget>[
+                              new Text('Balance', style: TextStyle(fontSize: 18.0, color: Color(0xFF6200ea)),),
+                              new Text("   ${fetchPost.data.id}",  style: TextStyle(fontSize: 32.0)),
+                              new Text(' XLM', style: TextStyle(fontSize: 18.0),)
+                            ],
+                          ),
                           new RaisedButton(
                             onPressed: () => fetchPost.doFetch(),
                             child: new Text("refresh"),
@@ -86,12 +94,15 @@ class Four extends StatelessWidget {
 
 Post _toPost(response) {
   final Map<String, dynamic> json = convert.json.decode(response.body);
-  return new Post(json['id'], json['title']);
+  final bal = json['balances'];
+  for (var items in bal) {
+    Map myMap = items;
+    print(myMap['balance']);
+    return new Post(myMap['balance']);
+  }
 }
 
 class Post {
-  final int id;
-  final String title;
-
-  Post(this.id, this.title);
+  final id;
+  Post(this.id);
 }
