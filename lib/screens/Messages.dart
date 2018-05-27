@@ -54,9 +54,22 @@ class _MessagesState extends State<Messages> {
 class SecondPage extends StatelessWidget {
   SecondPage(this.data);
   final data;
+
+  register() {
+    var userJson = JSON.encode({"username":"doodlecheeks", "password":"wordpass"});
+    var url = "https://matrix.org/_matrix/client/r0/register";
+    http.post(url, body: userJson).then((response) {
+      print("Response status: ${response.statusCode}");
+      print("Response body: ${response.body}");
+    });
+  }
+
   @override
   Widget build(BuildContext context) => new Scaffold(
-      appBar: new AppBar(title: new Text(data["name"]["first"])),
+      appBar: new AppBar(
+        title: new Text(data["name"]["first"]),
+        backgroundColor: Color(0xFF6200ea),
+      ),
       body: new Center(
         child: new Container(
           width: 150.0,
@@ -72,6 +85,9 @@ class SecondPage extends StatelessWidget {
               color: Colors.red,
               width: 4.0,
             ),
+          ),
+          child: new FlatButton(
+            onPressed: () => register(),
           ),
         ),
       ));

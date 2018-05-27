@@ -14,7 +14,6 @@ class HomePage extends StatelessWidget {
       shadowColor: Colors.pink,
       child: new Scaffold(
         body: Messages.Messages(),
-        drawer: _drawer(),
         bottomNavigationBar: new BottomAppBar(
             hasNotch: true,
             color: new Color(0xFF6200ea),
