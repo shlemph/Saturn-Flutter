@@ -1,8 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import './screens/SignUp.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import './Homepage.dart';
 import 'package:scoped_model/scoped_model.dart';
+import 'package:async_loader/async_loader.dart';
 //import 'package:image_picker/image_picker.dart';
 import './screens/Page1.dart';
 import './screens/Page2.dart';
@@ -23,7 +26,7 @@ class MyApp extends StatelessWidget {
       showPerformanceOverlay: false,
       home: ScopedModel<AppModel>(model: AppModel(),
       
-      child: new HomePage()),
+      child: new SplashPage()),
       routes: <String, WidgetBuilder> {
         "/Page1": (BuildContext context) => new First(),
         "/Page2": (BuildContext context) => new Second(),
@@ -33,6 +36,40 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+class SplashPage extends StatelessWidget {
+  final GlobalKey<AsyncLoaderState> _asyncLoaderState =
+      new GlobalKey<AsyncLoaderState>();
+
+  @override
+  Widget build(BuildContext context) {
+    var _asyncLoader = new AsyncLoader(
+      key: _asyncLoaderState,
+      initState: () async => await _accessToken(),
+            renderLoad: () => new CircularProgressIndicator(),
+            renderError: ([error]) =>
+                new SignUp(),
+            renderSuccess: ({data}) => new HomePage(),
+          );
+          return _asyncLoader;
+        }
+      
+      }
+
+      final storage = new FlutterSecureStorage();
+      
+      _accessToken() async {
+        String access_token = await storage.read(key: "access_token");
+        const delay = const Duration(seconds:1);
+        if (access_token = null) {
+          return new Future.delayed(delay, () => new SignUp());
+        } else {
+          return new Future.delayed(delay, () => new HomePage());
+        }
+}
+
+
+
 
 class AppModel extends Model {
   

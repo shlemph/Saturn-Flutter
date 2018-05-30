@@ -40,7 +40,7 @@ class Four extends StatelessWidget {
                   begin: Alignment.centerLeft,
                   end:  Alignment.bottomRight,
                   colors: [
-                    new Color(0xFF673ab7),
+                    new Color(0xFF6ff9ff),
                     new Color(0xFF000070)
                   ]
                 )
@@ -77,6 +77,14 @@ class Four extends StatelessWidget {
                       children: <Widget>[
                         new Text("   ${fetchPost.data.balance}",  style: TextStyle(fontSize: 32.0, color: Colors.white)),
                         new Text(' XLM', style: TextStyle(fontSize: 18.0, color: Colors.white),),
+                        new Padding(
+                          padding: const EdgeInsets.fromLTRB(350.0,0.0,0.0,0.0),
+                          child: new IconButton(
+                            color: Colors.white,
+                            onPressed: () => fetchPost.doFetch(),
+                            icon: new Icon(Icons.refresh),
+                          ),
+                        )
                       ],
                     );
                   },

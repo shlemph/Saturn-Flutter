@@ -5,6 +5,7 @@ import './screens/Page2.dart' as Second;
 import './screens/Page3.dart' as Third;
 import './screens/Page4.dart' as Four;
 import './screens/Messages.dart' as Messages;
+import 'package:stellaris/screens/widgets.dart';
 
 class HomePage extends StatelessWidget {
 
