@@ -59,6 +59,7 @@ class Four extends StatelessWidget {
                     ),
                   ),
                 ),
+
                 new Padding(
                 padding: const EdgeInsets.fromLTRB(8.0, 15.0, 8.0, 8.0),
                 child: new FetchWidget<Balance>(

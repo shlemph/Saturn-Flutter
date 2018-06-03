@@ -1,15 +1,39 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:path/path.dart';
 import 'package:stellaris/Homepage.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../main.dart';
 
-class ProfileForm extends StatelessWidget {
+class ProfileForm extends StatefulWidget {
+  @override
+  ProfileFormState createState() => new ProfileFormState();
+}
+
+class ProfileFormState extends State<ProfileForm> {
+  final textController = new TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+
+    textController.addListener(listener);
+  }
+
+  listener() {
+    print("${textController.text}");
+  }
+
+  authState() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool authState = (prefs.getBool('authState'));
+    await prefs.setBool('authState', true);
+  }
+
   final storage = new FlutterSecureStorage();
-  String _username, _firstname, _lastname;
-
-  final formKey = GlobalKey<FormState>();
-
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -21,9 +45,10 @@ class ProfileForm extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               new Form(
-                key: formKey,
                 child: new TextFormField(
-                  onSaved: (str) => _username = str,
+                  controller: textController,
+                  onSaved: (text) async =>
+                      await storage.write(key: "userName", value: text),
                   initialValue: null,
                   decoration: new InputDecoration(
                       labelText: 'User Name',
@@ -34,9 +59,10 @@ class ProfileForm extends StatelessWidget {
               new Padding(
                 padding: const EdgeInsets.only(top: 5.0),
                 child: new Form(
-                  key: formKey,
                   child: new TextFormField(
-                    onSaved: (str) => _firstname = str,
+                    controller: textController,
+                    onSaved: (text) async =>
+                        await storage.write(key: "firstName", value: text),
                     initialValue: null,
                     decoration: new InputDecoration(
                         labelText: 'First Name',
@@ -48,9 +74,10 @@ class ProfileForm extends StatelessWidget {
               new Padding(
                 padding: const EdgeInsets.only(top: 5.0),
                 child: new Form(
-                  key: formKey,
                   child: new TextFormField(
-                    onSaved: (str) => _lastname = str,
+                    controller: textController,
+                    onSaved: (text) async =>
+                        await storage.write(key: "lastName", value: text),
                     initialValue: null,
                     decoration: new InputDecoration(
                       labelText: 'Last Name',
@@ -62,19 +89,9 @@ class ProfileForm extends StatelessWidget {
               ),
               new MaterialButton(
                 child: Text("Done"),
-                onPressed: () async {
-                  new Future.delayed(
-                      new Duration(seconds: 2),
-                      () =>
-                          storage.write(key: "authState", value: "true"));
-                  await storage.write(key: 'username', value: '$_username');
-                  await storage.write(key: 'firstname', value: '$_firstname');
-                  await storage.write(key: 'lastname', value: '$_lastname');
-                  register();
-                  Navigator.push(
-                    context,
-                    new MaterialPageRoute(builder: (context) => HomePage()),
-                  );
+                onPressed: () {
+                  submit();
+                  Navigator.of(context).pushReplacementNamed('/HomePage');
                 },
               )
             ],
@@ -84,14 +101,9 @@ class ProfileForm extends StatelessWidget {
     ));
   }
 
-  void register() async {
-    var url = "https://matrix.org/_matrix/client/r0/register";
-    http.post(url, body:
-     {"username": "$_username",
-     "auth": {"type": "m.login.token"}
-     }).then((response) {
-       print("$response.statusCode");
-       print("$response.body");
-     });
+  void submit() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('authState', true);
+    print("User Signed In");
   }
 }

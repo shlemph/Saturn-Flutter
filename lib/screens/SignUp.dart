@@ -39,10 +39,7 @@ class SignUp extends StatelessWidget {
                 splashColor: Colors.deepPurple,
                 minWidth: 200.0,
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    new MaterialPageRoute(builder: (context) => new ProfileForm()),
-                  );
+                  Navigator.pushNamed(context, '/ProfileForm');
                 },
               ),
             ),
