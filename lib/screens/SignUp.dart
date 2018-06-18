@@ -7,7 +7,7 @@ class SignUp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var assetsImage = new AssetImage('assets/planet.png');
-    var image = new  Image(image: assetsImage, width: 200.0, height: 200.0,);
+    var image = new  Image(image: assetsImage, width: 250.0, height: 250.0,);
 
     return new Scaffold(
       body: new Center(

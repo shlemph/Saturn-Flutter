@@ -43,6 +43,16 @@ class ProfileFormState extends State<ProfileForm> {
           child: new Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              new Text("Sign Up", style: new TextStyle(
+                fontSize: 48.0,
+                fontWeight: FontWeight.bold
+              ),),
+              new Padding(
+                padding: const EdgeInsets.only(bottom: 50.0),
+                child: new Text("Please Fill out the Form to complete Sign Up", style: new TextStyle(
+                  fontSize: 12.0,
+                ),),
+              ),
               new Form(
                 key: formKey,
                 child: new Column(
@@ -53,7 +63,7 @@ class ProfileFormState extends State<ProfileForm> {
                       decoration: new InputDecoration(
                           labelText: 'User Name',
                           contentPadding: new EdgeInsets.all(12.0),
-                          border: InputBorder.none),
+                           ),
                     ),
                     new TextFormField(
                       onSaved: (val) => _firstName = val,
@@ -61,7 +71,7 @@ class ProfileFormState extends State<ProfileForm> {
                       decoration: new InputDecoration(
                           labelText: 'First Name',
                           contentPadding: new EdgeInsets.all(12.0),
-                          border: InputBorder.none),
+                          ),
                     ),
                     new TextFormField(
                       onSaved: (val) => _lastName = val, 
@@ -69,18 +79,23 @@ class ProfileFormState extends State<ProfileForm> {
                       decoration: new InputDecoration(
                         labelText: 'Last Name',
                         contentPadding: new EdgeInsets.all(12.0),
-                        border: InputBorder.none,
+                        
                       ),
                     ),
                   ],
                 ),
               ),
-              new MaterialButton(
-                child: Text("Done"),
-                onPressed: () {
-                  submit();
-                  Navigator.of(context).pushReplacementNamed('/HomePage');
-                },
+              new Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: new MaterialButton(
+                  color: Colors.deepPurple,
+                  elevation: 5.0,
+                  child: Text("Submit", style: new TextStyle(color: Colors.white),),
+                  onPressed: () {
+                    submit();
+                    Navigator.of(context).pushReplacementNamed('/HomePage');
+                  },
+                ),
               )
             ],
           ),
@@ -95,27 +110,26 @@ class ProfileFormState extends State<ProfileForm> {
     if(form.validate()){
       form.save();
       performLogin();
-      saveInfo();
     }
   }
 
+  //This is the method for user auth
   void performLogin() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    final storage = new FlutterSecureStorage();
     Dio dio = new Dio();
     var url = "https://matrix.org/_matrix/client/r0/register";
     Response response = await dio.post(url, data: {"username": "$_userName", "auth": {"type":"m.login.token"}});    
     final json = convert.json.decode(response.data);
     String access_token = json['access_token'];
-    prefs.setString("access_token", access_token);
-    storage.write(key: "access_token", value: "$access_token");
-    await prefs.setBool('authState', true);
+    // await prefs.setBool('authState', true);
     print("User Signed In" + "${response.data}");
   }
 
+
+  // Ignore this for now <- OK!
   void saveInfo() {
     final storage = new FlutterSecureStorage();
     storage.write(key: "userName", value: "$_userName");
     storage.write(key: "firstName", value: "$_firstName");
     storage.write(key: "lastName", value: "$_lastName");
   }
+}
