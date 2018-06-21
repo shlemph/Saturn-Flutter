@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'ProfileForm.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 
 class SignUp extends StatelessWidget {
   @override

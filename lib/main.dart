@@ -12,6 +12,7 @@ import './screens/Page3.dart';
 import './screens/Page4.dart';
 import './screens/ProfileForm.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import './AppModel.dart';
 
 void main() => runApp(new MyApp());
 
@@ -20,20 +21,23 @@ class MyApp extends StatelessWidget {
   final storage = new FlutterSecureStorage();
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
+    return new ScopedModel<AppModel>(
+      model: new AppModel(),
+          child: new MaterialApp(
 
-      debugShowCheckedModeBanner: false,
-      showPerformanceOverlay: false,
-      home: new SplashPage(),
-      routes: <String, WidgetBuilder>{
-        "/HomePage": (BuildContext context) => new HomePage(),
-        "/SignUp": (BuildContext context) => new SignUp(),
-        "/ProfileForm": (BuildContext context) => ProfileForm(),
-        "/Page1": (BuildContext context) => new First(),
-        "/Page2": (BuildContext context) => new Second(),
-        "/Page3": (BuildContext context) => new Third(),
-        "/Page4": (BuildContext context) => new Four(),
-      },
+        debugShowCheckedModeBanner: false,
+        showPerformanceOverlay: false,
+        home: new SplashPage(),
+        routes: <String, WidgetBuilder>{
+          "/HomePage": (BuildContext context) => new HomePage(),
+          "/SignUp": (BuildContext context) => new SignUp(),
+          "/ProfileForm": (BuildContext context) => ProfileForm(),
+          "/Page1": (BuildContext context) => new First(),
+          "/Page2": (BuildContext context) => new Second(),
+          "/Page3": (BuildContext context) => new Third(),
+          "/Page4": (BuildContext context) => new Four(),
+        },
+      ),
     );
   }
 }

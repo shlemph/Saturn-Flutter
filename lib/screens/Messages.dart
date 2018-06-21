@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:stellaris/screens/widgets.dart';
 
 class Messages extends StatefulWidget {
   @override
@@ -20,10 +19,12 @@ class _MessagesState extends State<Messages> {
       var extractdata = JSON.decode(response.body);
       data = extractdata["results"];
     });
+    return "Success";
   }
 
   @override
   void initState() {
+    super.initState();
     this.makeRequest();
   }
 

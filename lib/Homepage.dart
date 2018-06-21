@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import './screens/Page1.dart' as First;
-import './screens/Page2.dart' as Second;
-import './screens/Page3.dart' as Third;
-import './screens/Page4.dart' as Four;
 import './screens/Messages.dart' as Messages;
-import 'package:stellaris/screens/widgets.dart';
+import 'package:flutter/foundation.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -15,33 +10,56 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
-
-    void _showModalSheet() {
-      showModalBottomSheet(
+  void _showModalSheet() {
+    showModalBottomSheet(
         context: context,
         builder: (builder) {
-          return new Container(
-          height: 400.0,
-          color: Colors.white,
-          child: new Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: new Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                new Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+          return new Material(
+            elevation: 5.0,
+                      child: new Container(
+              height: 400.0,
+              color: Colors.white,
+              child: new Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: new Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
-                    new FlatButton(child: new Text("X", style: new TextStyle(fontSize: 18.0),), onPressed: () {})
+                    new Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        new IconButton(
+                          icon: new Icon(Icons.keyboard_arrow_down), onPressed: () {},
+                        )
+                      ],
+                    ),
+                   new MenuItem(
+                     icon: Icon(Icons.iso),
+                     text: 'placeholder 2',
+                   ),
+                   new MenuItem(
+                     icon: new Icon(Icons.invert_colors_off),
+                     text: 'placeholder 3',
+                   ),
+                   new MenuItem(
+                     icon: new Icon(Icons.invert_colors_off),
+                     text: 'placeholder 4',
+                   ),
+                   new MenuItem(
+                     icon: new Icon(Icons.invert_colors_off),
+                     text: 'placeholder 5',
+                   ),
+                   new MenuItem(
+                     icon: new Icon(Icons.invert_colors_off),
+                     text: 'placeholder 6',
+                   ),
                   ],
                 ),
-                new Divider(color: Colors.black26,)
-              ],
+              ),
             ),
-          ),
-        );
-        }
-      );
-    }
+          );
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +67,15 @@ class HomePageState extends State<HomePage> {
       shadowColor: Colors.pink,
       child: new Scaffold(
         body: Messages.Messages(),
+        appBar: new AppBar(
+          title: new Text(
+            "Chats",
+            style: new TextStyle(color: Colors.black),
+          ),
+          leading: new Container(),
+          elevation: 0.0,
+          backgroundColor: Colors.white,
+        ),
         bottomNavigationBar: new BottomAppBar(
           hasNotch: true,
           color: new Color(0xFF6200ea),
@@ -65,7 +92,10 @@ class HomePageState extends State<HomePage> {
               new Padding(
                 padding: const EdgeInsets.only(left: 200.0),
                 child: new IconButton(
-                    icon: Icon(Icons.search), color: Colors.white, onPressed: () => {},),
+                  icon: Icon(Icons.search),
+                  color: Colors.white,
+                  onPressed: () => {},
+                ),
               ),
               new IconButton(
                 icon: Icon(Icons.person),
@@ -84,8 +114,6 @@ class HomePageState extends State<HomePage> {
   }
 }
 
-
-
 class FAB extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -96,6 +124,37 @@ class FAB extends StatelessWidget {
       highlightElevation: 1.0,
       backgroundColor: Colors.black,
       child: Icon(Icons.add),
+    );
+  }
+}
+
+class MenuItem extends StatelessWidget {
+  final String text;
+  final Icon icon;
+
+  MenuItem({
+    @required this.text,
+    @required this.icon
+  }); 
+
+  @override
+  Widget build(BuildContext context) {
+    return new Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: new Container(
+        decoration: new BoxDecoration(
+          borderRadius: new BorderRadius.circular(8.0),
+          color: Colors.white,
+        ),
+        child: new Row(
+          children: <Widget>[
+            new IconButton(
+              icon: icon, onPressed: () {},
+            ),
+            new Text(text)
+          ],
+        ),
+      ),
     );
   }
 }
