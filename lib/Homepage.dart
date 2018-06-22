@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import './screens/Messages.dart' as Messages;
 import 'package:flutter/foundation.dart';
+import 'package:scoped_model/scoped_model.dart';
+import './AppModel.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -63,52 +65,55 @@ class HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return new Material(
-      shadowColor: Colors.pink,
-      child: new Scaffold(
-        body: Messages.Messages(),
-        appBar: new AppBar(
-          title: new Text(
-            "Chats",
-            style: new TextStyle(color: Colors.black),
+    return new ScopedModelDescendant<AppModel>(
+      builder: (context, child, model) =>
+         new Material(
+        shadowColor: Colors.pink,
+        child: new Scaffold(
+          body: Messages.Messages(),
+          appBar: new AppBar(
+            title: new Text(
+              model.name.toString(),
+              style: new TextStyle(color: Colors.black),
+            ),
+            leading: new Container(),
+            elevation: 0.0,
+            backgroundColor: Colors.white,
           ),
-          leading: new Container(),
-          elevation: 0.0,
-          backgroundColor: Colors.white,
-        ),
-        bottomNavigationBar: new BottomAppBar(
-          hasNotch: true,
-          color: new Color(0xFF6200ea),
-          child: new Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              new IconButton(
-                icon: Icon(Icons.menu),
-                color: Colors.white,
-                iconSize: 28.0,
-                alignment: Alignment.centerLeft,
-                onPressed: _showModalSheet,
-              ),
-              new Padding(
-                padding: const EdgeInsets.only(left: 200.0),
-                child: new IconButton(
-                  icon: Icon(Icons.search),
+          bottomNavigationBar: new BottomAppBar(
+            hasNotch: true,
+            color: new Color(0xFF6200ea),
+            child: new Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                new IconButton(
+                  icon: Icon(Icons.menu),
                   color: Colors.white,
-                  onPressed: () => {},
+                  iconSize: 28.0,
+                  alignment: Alignment.centerLeft,
+                  onPressed: _showModalSheet,
                 ),
-              ),
-              new IconButton(
-                icon: Icon(Icons.person),
-                alignment: Alignment.centerRight,
-                color: Colors.white,
-                onPressed: () => Navigator.of(context).pushNamed("/Page4"),
-                iconSize: 28.0,
-              ),
-            ],
+                new Padding(
+                  padding: const EdgeInsets.only(left: 200.0),
+                  child: new IconButton(
+                    icon: Icon(Icons.search),
+                    color: Colors.white,
+                    onPressed: () => {},
+                  ),
+                ),
+                new IconButton(
+                  icon: Icon(Icons.person),
+                  alignment: Alignment.centerRight,
+                  color: Colors.white,
+                  onPressed: () => Navigator.of(context).pushNamed("/Page4"),
+                  iconSize: 28.0,
+                ),
+              ],
+            ),
           ),
+          floatingActionButton: FAB(),
+          floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         ),
-        floatingActionButton: FAB(),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       ),
     );
   }

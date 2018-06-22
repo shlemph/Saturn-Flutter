@@ -36,6 +36,7 @@ class ProfileFormState extends State<ProfileForm> {
     return new ScopedModelDescendant<AppModel>(
       builder: (context, child, model) =>
          new Scaffold(
+           resizeToAvoidBottomPadding: false,
           body: new Center(
         child: new Container(
           child: new Padding(
@@ -66,7 +67,7 @@ class ProfileFormState extends State<ProfileForm> {
                              ),
                       ),
                       new TextFormField(
-                        onSaved: (val) => _firstName = val,
+                        onSaved: (val) => model.setName(val),
                         initialValue: null,
                         decoration: new InputDecoration(
                             labelText: 'First Name',
@@ -92,7 +93,7 @@ class ProfileFormState extends State<ProfileForm> {
                     elevation: 5.0,
                     child: Text("Submit", style: new TextStyle(color: Colors.white),),
                     onPressed: () {
-                      model.setName(_firstName);
+                      submit();
                       Navigator.of(context).pushReplacementNamed('/HomePage');
                     },
                   ),
@@ -108,10 +109,7 @@ class ProfileFormState extends State<ProfileForm> {
   // Sets AuthState to true and Registers User
   void submit() async {
     final form = formKey.currentState;
-    if(form.validate()){
       form.save();
-      performLogin();
-    }
   }
 
   //This is the method for user auth
