@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'dart:convert';
+import 'dart:convert' as convert;
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -16,7 +16,7 @@ class _MessagesState extends State<Messages> {
         .get(Uri.encodeFull(url), headers: {"Accept": "application/json"});
 
     setState(() {
-      var extractdata = JSON.decode(response.body);
+      var extractdata = convert.jsonDecode(response.body);
       data = extractdata["results"];
     });
     return "Success";
@@ -58,7 +58,7 @@ class SecondPage extends StatelessWidget {
   final data;
 
   register() {
-    var userJson = JSON.encode({"username":"doodlecheeks", "password":"wordpass"});
+    var userJson = convert.json.encode({"username":"doodlecheeks", "password":"wordpass"});
     var url = "https://matrix.org/_matrix/client/r0/register";
     http.post(url, body: userJson).then((response) {
       print("Response status: ${response.statusCode}");

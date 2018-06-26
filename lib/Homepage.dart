@@ -73,7 +73,7 @@ class HomePageState extends State<HomePage> {
           body: Messages.Messages(),
           appBar: new AppBar(
             title: new Text(
-              model.name.toString(),
+              model.name.toString() ,
               style: new TextStyle(color: Colors.black),
             ),
             leading: new Container(),

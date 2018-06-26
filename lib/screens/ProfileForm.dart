@@ -36,7 +36,6 @@ class ProfileFormState extends State<ProfileForm> {
     return new ScopedModelDescendant<AppModel>(
       builder: (context, child, model) =>
          new Scaffold(
-           resizeToAvoidBottomPadding: false,
           body: new Center(
         child: new Container(
           child: new Padding(

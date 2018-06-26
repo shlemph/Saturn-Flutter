@@ -7,7 +7,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:scoped_model/scoped_model.dart';
 import '../AppModel.dart';
 
-class Four extends StatelessWidget {
+class UserProfile extends StatelessWidget {
   final storage = new FlutterSecureStorage();
 
   

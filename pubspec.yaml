@@ -30,7 +30,6 @@ dev_dependencies:
 flutter:
   assets:
     - assets/planet.png
-    - assets/ezgif.com-gif-maker(1).gif
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

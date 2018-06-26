@@ -6,10 +6,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import './Homepage.dart';
 import 'package:scoped_model/scoped_model.dart';
 //import 'package:image_picker/image_picker.dart';
-import './screens/Page1.dart';
-import './screens/Page2.dart';
-import './screens/Page3.dart';
-import './screens/Page4.dart';
+import './screens/UserProfile.dart';
 import './screens/ProfileForm.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import './AppModel.dart';
@@ -32,10 +29,7 @@ class MyApp extends StatelessWidget {
           "/HomePage": (BuildContext context) => new HomePage(),
           "/SignUp": (BuildContext context) => new SignUp(),
           "/ProfileForm": (BuildContext context) => ProfileForm(),
-          "/Page1": (BuildContext context) => new First(),
-          "/Page2": (BuildContext context) => new Second(),
-          "/Page3": (BuildContext context) => new Third(),
-          "/Page4": (BuildContext context) => new Four(),
+          "/UserProfile": (BuildContext context) => new UserProfile(),
         },
       ),
     );
