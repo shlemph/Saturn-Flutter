@@ -8,34 +8,18 @@ import 'package:dio/dio.dart';
 import 'package:scoped_model/scoped_model.dart';
 import '../AppModel.dart';
 
-class ProfileForm extends StatefulWidget {
-  @override
-  ProfileFormState createState() => new ProfileFormState();
-}
 
-class ProfileFormState extends State<ProfileForm> {
+
+class ProfileForm extends StatelessWidget {
   final formKey = new GlobalKey<FormState>();
-
-  String _userName;
-  String _firstName;
-  String _lastName;
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
+  
   final storage = new FlutterSecureStorage();
   @override
   Widget build(BuildContext context) {
     return new ScopedModelDescendant<AppModel>(
       builder: (context, child, model) =>
          new Scaffold(
+           resizeToAvoidBottomPadding: false,
           body: new Center(
         child: new Container(
           child: new Padding(
@@ -58,7 +42,7 @@ class ProfileFormState extends State<ProfileForm> {
                   child: new Column(
                     children: <Widget>[
                       new TextFormField(
-                        onSaved: (val) => _userName = val,
+                        onSaved: (val) =>  val,
                         initialValue: null,
                         decoration: new InputDecoration(
                             labelText: 'User Name',
@@ -74,7 +58,7 @@ class ProfileFormState extends State<ProfileForm> {
                             ),
                       ),
                       new TextFormField(
-                        onSaved: (val) => _lastName = val, 
+                        onSaved: (val) =>  val, 
                         initialValue: null,
                         decoration: new InputDecoration(
                           labelText: 'Last Name',
@@ -109,25 +93,5 @@ class ProfileFormState extends State<ProfileForm> {
   void submit() async {
     final form = formKey.currentState;
       form.save();
-  }
-
-  //This is the method for user auth
-  void performLogin() async {
-    Dio dio = new Dio();
-    var url = "https://matrix.org/_matrix/client/r0/register";
-    Response response = await dio.post(url, data: {"username": "$_userName", "auth": {"type":"m.login.token"}});    
-    final json = convert.json.decode(response.data);
-    String accessToken = json['access_token'];
-    // await prefs.setBool('authState', true);
-    print("User Signed In" + "${response.data}"+ "$accessToken");
-  }
-
-
-  // Ignore this for now <- OK!
-  void saveInfo() {
-    final storage = new FlutterSecureStorage();
-    storage.write(key: "userName", value: "$_userName");
-    storage.write(key: "firstName", value: "$_firstName");
-    storage.write(key: "lastName", value: "$_lastName");
   }
 }

@@ -17,20 +17,3 @@ class AppModel extends Model {
   }
 }
 
-class AndroidModel extends Model {
-  static const platformMethodChannel = const MethodChannel('com.test/test');
-
-  String messages;
-
-  Future<String> nativeAndroidCall() async {
-    String value;
-
-    try {
-      value = await platformMethodChannel.invokeMethod('getMessage');
-    } catch (e) {
-      print(e);
-    }
-    print(value);
-    return value;
-  }
-}

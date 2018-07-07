@@ -73,7 +73,6 @@ class SplashPageState extends State<SplashPage> {
           padding: const EdgeInsets.all(8.0),
           child: new Column(
             children: <Widget>[
-              new Image.asset('assets/planet.png'),
               new Text("SATURN"),
               new CircularProgressIndicator(),
             ],
