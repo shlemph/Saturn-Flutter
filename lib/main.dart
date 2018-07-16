@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import './screens/SignUp.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -10,6 +9,7 @@ import './screens/UserProfile.dart';
 import './screens/ProfileForm.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import './AppModel.dart';
+import './screens/WalletScreen.dart';
 
 void main() => runApp(new MyApp());
 
@@ -30,6 +30,7 @@ class MyApp extends StatelessWidget {
           "/SignUp": (BuildContext context) => new SignUp(),
           "/ProfileForm": (BuildContext context) => ProfileForm(),
           "/UserProfile": (BuildContext context) => new UserProfile(),
+          "/WalletScreen": (BuildContext context) => new Wallet(),
         },
       ),
     );

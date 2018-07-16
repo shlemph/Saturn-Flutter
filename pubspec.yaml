@@ -13,6 +13,7 @@ dependencies:
   shared_preferences: "^0.4.2"
   dio: "^0.0.14"
   flutter_sparkline: "^0.0.4"
+  carousel_slider: "^0.0.6"
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.0
@@ -42,6 +43,10 @@ flutter:
     - assets/ETHEREUM-ICON_Black_small.png
     - assets/BC_Logo_.png
     - assets/Twitter_avatar.png
+    - assets/filecoin.png
+    - assets/Storj-symbol.png
+    - assets/ipfs.png
+
   fonts:
     - family: Montserrat
       fonts:
