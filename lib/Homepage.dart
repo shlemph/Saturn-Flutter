@@ -1,12 +1,6 @@
 import 'package:flutter/material.dart';
-import './screens/Messages.dart' as Messages;
-import 'package:flutter/foundation.dart';
 import 'package:scoped_model/scoped_model.dart';
 import './AppModel.dart';
-import 'screens/UserProfile.dart';
-import 'package:flutter_sparkline/flutter_sparkline.dart';
-import 'dart:math' as math;
-import './screens/WalletScreen.dart';
 import './screens/Dashboard.dart';
 
 class HomePage extends StatefulWidget {
@@ -36,7 +30,7 @@ class HomePageState extends State<HomePage> {
               backgroundColor: Colors.white,
             ),
             bottomNavigationBar: new BottomAppBar(
-              hasNotch: true,
+              //hasNotch: true,
               color: new Color(0xFFFFFFFF),
               child: new Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -87,7 +81,7 @@ class FAB extends StatelessWidget {
     return new FloatingActionButton(
       onPressed: () => {},
       elevation: 5.0,
-      notchMargin: 7.0,
+      //notchMargin: 7.0,
       highlightElevation: 1.0,
       backgroundColor: Colors.black,
       tooltip: 'Add an App',

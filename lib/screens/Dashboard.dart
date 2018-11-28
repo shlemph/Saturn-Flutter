@@ -28,6 +28,7 @@ class Dashboard extends StatelessWidget {
                 items: [
                   new AppWidget(
                     appName: 'Saturn Messaging',
+                    color: const Color(0xFF3401ab),
                     image: new Image.asset(
                       'assets/logo.jpeg',
                       height: 100.0,
@@ -35,6 +36,7 @@ class Dashboard extends StatelessWidget {
                     ),
                   ),
                   new AppWidget(
+                    color: const Color(0xFF3401ab),
                     appName: 'Ipfs',
                     image: Image.asset(
                       'assets/ipfs.png',
@@ -43,6 +45,7 @@ class Dashboard extends StatelessWidget {
                     ),
                   ),
                   new AppWidget(
+                    color: const Color(0xFF3401ab),
                     appName: 'FileCoin',
                      image: new Image.asset('assets/filecoin.png',),
                   ),

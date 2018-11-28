@@ -89,7 +89,9 @@ class SecondPage extends StatelessWidget {
             ),
           ),
           child: new FlatButton(
-            onPressed: () => register(),
+            
+            onPressed: () => register(), 
+            child: null,
           ),
         ),
       ));

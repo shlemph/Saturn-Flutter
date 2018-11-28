@@ -206,7 +206,7 @@ class Wallet extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: new BottomAppBar(
-        hasNotch: true,
+//        hasNotch: true,
         color: const Color(0xFF3401ab),
         child: new Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -227,7 +227,7 @@ class Wallet extends StatelessWidget {
       floatingActionButton: new FloatingActionButton(
                 onPressed: () => {},
                 elevation: 5.0,
-                notchMargin: 7.0,
+//                notchMargin: 7.0,
                 highlightElevation: 1.0,
                 backgroundColor: Colors.black,
                 child: Icon(Icons.add),

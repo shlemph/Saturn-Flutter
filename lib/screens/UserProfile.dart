@@ -18,7 +18,7 @@ class UserProfile extends StatelessWidget {
           builder: (context, child, model) =>
              new Scaffold(
             bottomNavigationBar: new BottomAppBar(
-              hasNotch: true,
+              //hasNotch: true,
               color: new Color(0xFF6200ea),
               child: new Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,7 +39,7 @@ class UserProfile extends StatelessWidget {
             floatingActionButton: new FloatingActionButton(
                 onPressed: () => {},
                 elevation: 5.0,
-                notchMargin: 7.0,
+                //notchMargin: 7.0,
                 highlightElevation: 1.0,
                 backgroundColor: Colors.black,
                 child: Icon(Icons.add),
